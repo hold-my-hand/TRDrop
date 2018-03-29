@@ -1,0 +1,24 @@
+{
+  "name": "TRDrop",
+  "version": "0.1.0",
+  "summary": "A short description of TRDrop.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/13036101641@163.com/TRDrop",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "13036101641@163.com": "jackie.jiang@transn.com"
+  },
+  "source": {
+    "git": "https://github.com/13036101641@163.com/TRDrop.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "TRDrop/Classes/**/*",
+  "resources": "TRDrop/Resource/Drop.bundle",
+  "requires_arc": true
+}

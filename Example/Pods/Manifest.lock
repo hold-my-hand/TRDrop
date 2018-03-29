@@ -1,0 +1,16 @@
+PODS:
+  - TRDrop (0.1.0)
+
+DEPENDENCIES:
+  - TRDrop (from `../`)
+
+EXTERNAL SOURCES:
+  TRDrop:
+    :path: ../
+
+SPEC CHECKSUMS:
+  TRDrop: 3659dd0c3021f9944654aa7fb6c99cf3ebb6eea4
+
+PODFILE CHECKSUM: 5d7078ed06f97f5273e1dc34aade583e41b7e3c0
+
+COCOAPODS: 1.4.0

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LyE-qY-dUH">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--首页-->
+        <scene sceneID="wQg-tq-qST">
+            <objects>
+                <viewController id="whP-gf-Uak" customClass="TRViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uEw-UM-LJ8"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mvr-aV-6Um"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TpU-gO-2f1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trS-eo-I4f">
+                                <rect key="frame" x="172.5" y="164" width="30" height="30"/>
+                                <state key="normal" title="info"/>
+                                <connections>
+                                    <action selector="showInfo:" destination="whP-gf-Uak" eventType="touchUpInside" id="GKG-Zv-GkC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfq-Zx-2nI">
+                                <rect key="frame" x="159.5" y="294" width="56" height="30"/>
+                                <state key="normal" title="success"/>
+                                <connections>
+                                    <action selector="showSuccess:" destination="whP-gf-Uak" eventType="touchUpInside" id="v2p-P5-jld"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ckH-kG-NRP">
+                                <rect key="frame" x="170.5" y="424" width="34" height="30"/>
+                                <state key="normal" title="error"/>
+                                <connections>
+                                    <action selector="showError:" destination="whP-gf-Uak" eventType="touchUpInside" id="Ktt-vK-VXb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ckH-kG-NRP" firstAttribute="top" secondItem="hfq-Zx-2nI" secondAttribute="bottom" constant="100" id="7Js-cG-NZ5"/>
+                            <constraint firstItem="trS-eo-I4f" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="100" id="A0u-C7-t34"/>
+                            <constraint firstItem="ckH-kG-NRP" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="L5x-6o-F1g"/>
+                            <constraint firstItem="hfq-Zx-2nI" firstAttribute="top" secondItem="trS-eo-I4f" secondAttribute="bottom" constant="100" id="eve-2D-DTE"/>
+                            <constraint firstItem="trS-eo-I4f" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="frl-U5-AIE"/>
+                            <constraint firstItem="hfq-Zx-2nI" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="s9k-CV-yZp"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="首页" id="Lw4-AB-O7M"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="305" y="433"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DOl-QN-K1l">
+            <objects>
+                <navigationController id="LyE-qY-dUH" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DVm-YL-WX3">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="whP-gf-Uak" kind="relationship" relationship="rootViewController" id="RxQ-ge-Sp4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ej2-XM-iKX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="305" y="-394"/>
+        </scene>
+    </scenes>
+</document>

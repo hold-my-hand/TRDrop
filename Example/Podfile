@@ -1,0 +1,5 @@
+use_frameworks!
+
+target 'TRDrop_Example' do
+  pod 'TRDrop', :path => '../'
+end

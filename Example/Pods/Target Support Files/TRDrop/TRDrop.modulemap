@@ -1,0 +1,6 @@
+framework module TRDrop {
+  umbrella header "TRDrop-umbrella.h"
+
+  export *
+  module * { export * }
+}
