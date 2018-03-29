@@ -107,7 +107,7 @@ static TRDrop * _instace = nil;
         NSLayoutConstraint *centerXConstraint1 = [NSLayoutConstraint constraintWithItem:drop.messageL attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:drop attribute:NSLayoutAttributeCenterY multiplier:1 constant:0.5*[UIApplication sharedApplication].statusBarFrame.size.height];
         [drop addConstraint:centerXConstraint1];
     }
-    CGFloat height = MAX(64, [UIApplication sharedApplication].statusBarFrame.size.height);
+    CGFloat height = 64+[UIApplication sharedApplication].statusBarFrame.size.height-20;
     drop.frame = CGRectMake(0,-height, [UIScreen mainScreen].bounds.size.width, height);
     drop.messageL.text = message;
     switch (state) {
@@ -149,7 +149,7 @@ static TRDrop * _instace = nil;
     [[UIApplication  sharedApplication].delegate.window bringSubviewToFront:drop];
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         CGRect rect = drop.frame;
-        rect.origin.y = [UIApplication sharedApplication].statusBarFrame.size.height-20;
+        rect.origin.y = 0;
         drop.frame = rect;
     } completion:^(BOOL finished) {
         
