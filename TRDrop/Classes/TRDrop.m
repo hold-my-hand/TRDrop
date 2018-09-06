@@ -147,14 +147,14 @@ static TRDrop * _instace = nil;
         }
         [[UIApplication sharedApplication].delegate.window addSubview:drop];
         [[UIApplication  sharedApplication].delegate.window bringSubviewToFront:drop];
-        [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             CGRect rect = drop.frame;
             rect.origin.y = 0;
             drop.frame = rect;
         } completion:^(BOOL finished) {
             
         }];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MAX(duration, 0.25) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [drop removeFromSuperview];
         });
     });
