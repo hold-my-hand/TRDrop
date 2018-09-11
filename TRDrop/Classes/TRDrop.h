@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, TRDropState) {
 @property (strong, nonatomic)  UIImageView *imageV;
 @property (strong, nonatomic)  UIVisualEffectView *effectV;
 @property (strong, nonatomic)  UILabel *messageL;
-
+@property (strong, nonatomic)  NSTimer *hideDelayTimer;
 + (instancetype)sharedInstace;
 
 +(void)showMessage:(NSString *)message state:(TRDropState)state duration:(CGFloat)duration;

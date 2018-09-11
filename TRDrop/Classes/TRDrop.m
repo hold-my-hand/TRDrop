@@ -6,7 +6,11 @@
 //
 
 #import "TRDrop.h"
+@interface TRDrop()
 
+@property(nonatomic,strong)NSDate *startDate;
+@property(nonatomic,strong)NSDate *endDate;
+@end
 
 @implementation TRDrop
 
@@ -29,7 +33,7 @@ static TRDrop * _instace = nil;
         _instace = [super init];
         [_instace addSubview:self.imageV];
         [_instace addSubview:self.messageL];
-
+        
     });
     return _instace;
 }
@@ -40,14 +44,14 @@ static TRDrop * _instace = nil;
     drop.backgroundColor = [UIColor whiteColor];
     return drop;
 }
-+ (id)copyWithZone:(struct _NSZone *)zone
+- (id)copyWithZone:(struct _NSZone *)zone
 {
-    return _instace;
+    return [TRDrop sharedInstace];
 }
 
-+ (id)mutableCopyWithZone:(struct _NSZone *)zone
+- (id)mutableCopyWithZone:(struct _NSZone *)zone
 {
-    return _instace;
+    return [TRDrop sharedInstace];
 }
 
 
@@ -62,13 +66,40 @@ static TRDrop * _instace = nil;
     if (!_messageL) {
         _messageL = [[UILabel alloc] init];
         _messageL.numberOfLines = 0;
-        _messageL.font =   [UIFont systemFontOfSize:16*[UIScreen mainScreen].bounds.size.width/375.0f];
+        _messageL.font =   [UIFont boldSystemFontOfSize:16*[UIScreen mainScreen].bounds.size.width/375.0f];//[UIFont systemFontOfSize:16*[UIScreen mainScreen].bounds.size.width/375.0f];
     }
     return _messageL;
 }
+-(NSTimer *)hideDelayTimer{
+    if (!_hideDelayTimer) {
+        _hideDelayTimer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(dismissTimer:) userInfo:nil repeats:YES];
+    }
+    return _hideDelayTimer;
+}
+-(void)startTimer{
+    [[NSRunLoop currentRunLoop] addTimer:self.hideDelayTimer forMode:NSRunLoopCommonModes];
+    [self.hideDelayTimer fire];
+    
+}
+-(void)stopTimer{
+    [_hideDelayTimer invalidate];
+    _hideDelayTimer = nil;
+}
+-(void)dismissTimer:(NSTimer *)timer{
+    if (self.endDate == nil ||[self.endDate compare:[NSDate date]] == NSOrderedAscending) {
+        TRDrop *drop =   [TRDrop sharedInstace];
+        [drop removeFromSuperview];
+        [self stopTimer];
+    }else{
+        
+    }
+}
+
+
 +(void)showMessage:(NSString *)message state:(TRDropState)state duration:(CGFloat)duration{
+    __weak TRDrop *weakTrop = [TRDrop sharedInstace];
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSBundle *FrameWorkBundle = [NSBundle bundleForClass:[self class]];
+        NSBundle *FrameWorkBundle = [NSBundle bundleForClass:[TRDrop class]];
         NSBundle *dorpBundle  = [NSBundle bundleWithPath:[FrameWorkBundle pathForResource:@"Drop" ofType:@"bundle"]];
         NSAssert(dorpBundle != nil, @"Bundle named '%@' not found!", @"Drop");
         if (!dorpBundle) return;
@@ -145,6 +176,14 @@ static TRDrop * _instace = nil;
             default:
                 break;
         }
+        weakTrop.startDate = [NSDate date];
+        NSDate *endData = [weakTrop.startDate  dateByAddingTimeInterval:MAX(duration, 2.5)];
+        weakTrop.endDate = endData;
+        //        if (weakTrop.endDate && [endData compare:weakTrop.endDate] == NSOrderedAscending) {
+        //
+        //        }else{
+        //        }
+        [weakTrop startTimer];
         [[UIApplication sharedApplication].delegate.window addSubview:drop];
         [[UIApplication  sharedApplication].delegate.window bringSubviewToFront:drop];
         [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -154,16 +193,14 @@ static TRDrop * _instace = nil;
         } completion:^(BOOL finished) {
             
         }];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MAX(duration, 0.25) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [drop removeFromSuperview];
-        });
+        
     });
-  
+    
 }
 +(void)showError:(NSString *)errorMsg{
     [TRDrop showMessage:errorMsg state:TRDropStateError duration:0.25];
 }
 +(void)showSuccess:(NSString *)success{
-   [TRDrop showMessage:success state:TRDropStateSuccess duration:0.25];
+    [TRDrop showMessage:success state:TRDropStateSuccess duration:0.25];
 }
 @end

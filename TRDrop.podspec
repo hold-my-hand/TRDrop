@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TRDrop'
-  s.version          = '0.1.5'
+  s.version          = '0.1.6'
   s.summary          = '从顶部弹出的toast提醒.'
 
 # This description is used to generate tags and improve search results.
